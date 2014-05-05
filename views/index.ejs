@@ -1,0 +1,52 @@
+
+<%- include ../shared/header.ejs %>
+<div class="container">
+  <h1><%= title %></h1>
+  <script>
+  console.log(data);
+  var availableTags = [];
+  $(function() {
+    for(var i=0; i<data.length; i++)
+    {
+      
+    }
+    console.log(availableTags);
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+  </script>
+  <div class="ui-widget">
+    <label for="tags">Tags: </label>
+    <input id="tags">
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Koridor</th>
+        <th>Halte ID</th>
+        <th>Nama Halte</th>
+        <th>lat</th>
+        <th>Long</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% for(var i=0; i<data.length; i++) {%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= data[i].koridor %></td>
+        <td><%= data[i].halteId %></td>
+        <td><%= data[i].halteName %></td>
+        <td><%= data[i].lat %></td>
+        <td><%= data[i].long %></td>
+      </tr>
+      <% } %>
+
+    </tbody>
+  </table>
+  <div class="container">
+    <%- include ../shared/footer.ejs %>
