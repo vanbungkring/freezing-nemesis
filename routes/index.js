@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var controller = require('../controller/coridor')
-/* GET home page. */
+
+/* get method here */
 router.get('/',controller.getListKoridor);
-router.get('/halte',controller.autoComplete);
+router.get('/db',controller.getListKoridorDB);
 module.exports = router;

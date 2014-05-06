@@ -1,15 +1,14 @@
 var async    = require('async');
 var request = require("request");
 var express = require('express');
-var data;
-var list;
+var db = require('../model')
+
 exports.getListKoridor = function(req,res){
   request({
     uri: "http://api.hackjak.bappedajakarta.go.id/busway/halte?apiKey=ItLnQWwolgDl7b86NQAG6nRLNbKATfUN",
     method: "GET",
     dataType:'json',
   }, function(error, response, body) {
-    data
     if(!error){
       request({
        uri: "http://api.hackjak.bappedajakarta.go.id/busway/halte?apiKey=ItLnQWwolgDl7b86NQAG6nRLNbKATfUN&limit="+JSON.parse(body).total,
@@ -27,15 +26,11 @@ exports.getListKoridor = function(req,res){
     }
   });
 }
-exports.autoComplete = function(req,res){
-  var result = [];
-  console.log(list);
-  for (var halteName in list) {
-    console.log(list);
-    if (list.hasOwnProperty(halteName)) {
-      result.push(list[halteName]);
-    }
-  }
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(result));
+exports.getListKoridorDB = function(req,res){
+  db.halte.findAll({
+
+  }).success(function(halte_list){
+    console.log(halte_list);
+  })
+
 }
